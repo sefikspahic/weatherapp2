@@ -4,11 +4,12 @@ import SingleResult from "./SingleResult";
 import axios from "axios";
 
 const KEY = process.env.REACT_APP_KEY;
-export default function Main() {
+const Main=()=> {
   const [data, setData] = useState([]);
   const [city, setCity] = useState("");
   const [isInput, setIsInput] = useState(false);
   const [tempCity, setTempCity] = useState("");
+  const [isDisableButton, setIsDisableButton] = useState(false);
 
   const sendRequest = () => {
     const URL = `https://api.openweathermap.org/data/2.5/find?q=${city}&units=metric&type=accurate&appid=${KEY}`;
@@ -65,8 +66,9 @@ export default function Main() {
     sendRequest();
   }, [city]);
 
-  const clickHandler = (e) => {
+  const clickHandler = () => {
     setIsInput(!isInput);
+    setIsDisableButton(true);
   };
 
   const changeHandler = (e) => {
@@ -80,6 +82,7 @@ export default function Main() {
         setIsInput(false);
       }
     }
+    setIsDisableButton(false);
   };
 
   const removeHandler = (index) => {
@@ -113,34 +116,46 @@ export default function Main() {
   return (
     <div>
       <Header />
-      <button onClick={clickHandler}>+</button>
-      {isInput ? (
-        <input
-          onChange={changeHandler}
-          onKeyPress={enterHandler}
-          type="text"
-          placeholder="enter city..."
-        />
-      ) : (
-        <div></div>
-      )}
-      <div className="container">
-        {data.map((value, index) => {
-          return (
-            <SingleResult
-              key={index}
-              city={value.city}
-              icon={value.icon}
-              country={value.country}
-              temp={value.temp}
-              windSpeed={value.windSpeed}
-              arrow={value.arrow}
-              index={index}
-              removeHandler={removeHandler}
-            />
-          );
-        })}
+      <div className="weather-container">
+        
+        <div className="add-button-container">
+          <button
+            className="add-box-btn"
+            disabled={isDisableButton}
+            onClick={clickHandler}
+          >
+            +
+          </button>
+        </div>
+        {isInput ? (
+          <input
+            onChange={changeHandler}
+            onKeyPress={enterHandler}
+            type="text"
+            placeholder="enter city..."
+          />
+        ) : (
+          <div></div>
+        )}
+        <div className="weather-list">
+          {data.map((value, index) => {
+            return (
+              <SingleResult
+                key={index}
+                city={value.city}
+                icon={value.icon}
+                country={value.country}
+                temp={value.temp}
+                windSpeed={value.windSpeed}
+                arrow={value.arrow}
+                index={index}
+                removeHandler={removeHandler}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
 }
+export default Main

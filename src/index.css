@@ -1,15 +1,38 @@
-body {
+html, body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+* {
+  box-sizing: border-box;
+}
+.weather-list {
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.weather-container {
+  position: relative;
+  margin-top: 20px;
+  padding: 0 15px;
+}
+
+
+header{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 70px;
+  width: 100%;
+  background-color: #3f51b5;
+  color: #fff;
+  font-size: 24px;
+  padding: 0 20px;
+  box-shadow: -15px 10px 25px -15px #111;
 }
 
 .container {
@@ -26,4 +49,46 @@ code {
 img{
   width: 2rem;
   height: 2rem;
+}
+.add-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+.add-button-container .add-box-btn:disabled {
+  cursor: not-allowed;
+  background-color: #eee;
+  color: #000;
+}
+
+
+.add-button-container .add-box-btn {
+  position: relative;
+  height: 60px;
+  width: 60px;
+  background-color: #f24a58;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 28px;
+  box-shadow: 0px 0px 15px #939190;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+.weather-box {
+  position: relative;
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.weather-box .content {
+  background-color: #fff;
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  padding: 10px;
 }

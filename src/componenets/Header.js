@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function Header() {
-  return <div>Header</div>;
-}
+const Header = () => {
+  return <header className="app-header">Weather</header>;
+};
+
+export default Header;
