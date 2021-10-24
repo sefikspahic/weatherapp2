@@ -73,6 +73,7 @@ const Main = () => {
 
   const changeHandler = (e) => {
     setTempCity(e.target.value);
+    setIsDisableButton(true);
   };
 
   const enterHandler = (e) => {
