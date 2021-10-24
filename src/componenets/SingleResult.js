@@ -1,48 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-export default function SingleResult({ setCity, boxNumber, setBoxes, boxes }) {
-  const [isInput, setIsInput] = useState(true);
-  const [tempCity, setTempCity] = useState("");
-
-  const changeHandler = (e) => {
-    setTempCity(e.target.value);
-  };
-
-  const enterHandler = (e) => {
-    if (e.key === "Enter") {
-      if (tempCity !== "") {
-        setCity(tempCity);
-      }
-    }
-  };
-
-  const clickHandler = (e) => {
-    e.preventDefault();
-
-    let tempBoxes = boxes.filter((value, index) => {
-      if (index !== boxNumber) {
-        console.log(index);
-        return value;
-      }
-    });
-
-    setBoxes(tempBoxes);
-  };
-
+export default function SingleResult({
+  city,
+  icon,
+  country,
+  temp,
+  windSpeed,
+  arrow,
+  index,
+  removeHandler,
+}) {
   return (
     <div className="single">
-      {isInput ? (
-        <input
-          onChange={changeHandler}
-          onKeyPress={enterHandler}
-          type="text"
-          placeholder="enter city..."
+      <p>
+        {city}{" "}
+        <img
+          src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt="Weather Icon"
         />
-      ) : (
-        <div></div>
-      )}
-      <button onClick={clickHandler}>Remove</button>
-      {boxNumber}
+        <img
+          src={`https://flagicons.lipis.dev/flags/1x1/${country}.svg`}
+          alt="Country Icon"
+        />
+      </p>
+
+      <div>
+        <p>
+          {temp}°C {windSpeed}m/s {arrow}
+        </p>
+      </div>
+      <button onClick={() => removeHandler(index)}>Remove</button>
     </div>
   );
 }

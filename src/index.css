@@ -20,5 +20,10 @@ code {
 .single {
   border: 1px solid black;
   width: 400px;
-  height: 100px;
+  height: fit-content;
+}
+
+img{
+  width: 2rem;
+  height: 2rem;
 }
