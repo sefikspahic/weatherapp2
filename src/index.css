@@ -92,3 +92,21 @@ img{
   border: 1px solid #ddd;
   padding: 10px;
 }
+.boxselection{
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.boxcener{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+
+}
+.inputedit{
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+}

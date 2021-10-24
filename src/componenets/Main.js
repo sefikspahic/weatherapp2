@@ -4,7 +4,7 @@ import SingleResult from "./SingleResult";
 import axios from "axios";
 
 const KEY = process.env.REACT_APP_KEY;
-const Main=()=> {
+const Main = () => {
   const [data, setData] = useState([]);
   const [city, setCity] = useState("");
   const [isInput, setIsInput] = useState(false);
@@ -84,7 +84,9 @@ const Main=()=> {
     }
     setIsDisableButton(false);
   };
-
+  const removeInput = () => {
+    window.location.reload();
+  };
   const removeHandler = (index) => {
     let newData = [];
     let j = 0;
@@ -117,7 +119,6 @@ const Main=()=> {
     <div>
       <Header />
       <div className="weather-container">
-        
         <div className="add-button-container">
           <button
             className="add-box-btn"
@@ -127,16 +128,25 @@ const Main=()=> {
             +
           </button>
         </div>
+
         {isInput ? (
-          <input
-            onChange={changeHandler}
-            onKeyPress={enterHandler}
-            type="text"
-            placeholder="enter city..."
-          />
+          <div className="weather-box">
+            <div className="content">
+              <div className="form-control">
+                <input
+                  onChange={changeHandler}
+                  onKeyPress={enterHandler}
+                  type="text"
+                  placeholder="Enter city..."
+                />
+              </div>
+              <button onClick={removeInput}>REMOVE</button>
+            </div>
+          </div>
         ) : (
           <div></div>
         )}
+
         <div className="weather-list">
           {data.map((value, index) => {
             return (
@@ -157,5 +167,5 @@ const Main=()=> {
       </div>
     </div>
   );
-}
-export default Main
+};
+export default Main;
